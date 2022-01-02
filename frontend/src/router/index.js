@@ -17,6 +17,10 @@ import NursingConfig from "../components/nursing/NursingConfig";
 import CustomizeNursing from "../components/nursing/CustomizeNursing";
 import CustomizeNursingAdd from "../components/nursing/CustomizeNursingAdd";
 import CustomizeNursingEdit from "../components/nursing/CustomizeNursingEdit";
+import BedList from "../components/bed/BedList";
+import BedListAdd from "../components/bed/BedListAdd";
+import BedListPost from "../components/bed/BedListPost";
+import BedListUpdate from "../components/bed/BedListUpdate";
 
 Vue.use(Router)
 
@@ -92,6 +96,22 @@ const router = new Router({
                 {
                     path: 'customizeNursingEdit/:id',
                     component: CustomizeNursingEdit,
+                },
+                {
+                    path: 'bed',
+                    component: BedList
+                },
+                {
+                    path: 'bedAdd',
+                    component: BedListAdd
+                },
+                {
+                    path: 'bedPost',
+                    component: BedListPost
+                },
+                {
+                    path: 'bedUpdate/:id',//路由跳转传递参数，参数名是id
+                    component: BedListUpdate
                 },
             ]
         }

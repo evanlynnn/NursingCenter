@@ -19,8 +19,13 @@ public class BedController {
     private BedMapper bedMapper;
 
     @RequestMapping("selAll")
-    public List<Bed> selAll(){
+    public List<Bed> selAll() {
         return bedMapper.selectAll();
+    }
+
+    @RequestMapping("list")
+    public List<Bed> list(@RequestBody Bed bed) {
+        return bedMapper.queryAll(bed);
     }
 
     @RequestMapping("sel/{id}")
@@ -39,9 +44,11 @@ public class BedController {
         bedMapper.insert(bed);
         return "success";
     }
+
     @RequestMapping("update")
-    public String update(@RequestBody Bed bed){
+    public String update(@RequestBody Bed bed) {
         bedMapper.updateByPrimaryKey(bed);
         return "success";
     }
 }
+

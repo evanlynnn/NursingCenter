@@ -14,4 +14,6 @@ public interface BedMapper {
     List<Bed> selectAll();
 
     int updateByPrimaryKey(Bed record);
+
+    List<Bed> queryAll(Bed bed);
 }

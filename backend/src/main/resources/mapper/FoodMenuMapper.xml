@@ -72,5 +72,6 @@
                 and M.user_id = #{user.userId}
             </if>
         </where>
+        order by M.week asc
     </select>
 </mapper>
