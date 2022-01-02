@@ -21,6 +21,7 @@ import BedList from "../components/bed/BedList";
 import BedListAdd from "../components/bed/BedListAdd";
 import BedListPost from "../components/bed/BedListPost";
 import BedListUpdate from "../components/bed/BedListUpdate";
+import Dashboard from "../components/dashboard/Dashboard";
 
 Vue.use(Router)
 
@@ -36,6 +37,10 @@ const router = new Router({
             path: '/main',
             component: Main,
             children: [
+                {
+                    path: 'dashboard',
+                    component: Dashboard,
+                },
                 {
                     path: 'food',
                     component: FoodList,
