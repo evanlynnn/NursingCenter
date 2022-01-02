@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jsut.nursing.mapper.FoodMapper">
+    <resultMap id="BaseResultMap" type="edu.jsut.nursing.model.Food">
+        <id column="food_id" jdbcType="INTEGER" property="foodId" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="protein" jdbcType="DOUBLE" property="protein" />
+        <result column="cho" jdbcType="DOUBLE" property="cho" />
+        <result column="heat" jdbcType="DOUBLE" property="heat" />
+        <result column="fat" jdbcType="DOUBLE" property="fat" />
+        <result column="img_name" jdbcType="VARCHAR" property="imgName" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from food
+        where food_id = #{foodId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="edu.jsut.nursing.model.Food">
+        insert into food (food_id, name, protein,
+                          cho, heat, fat, img_name
+        )
+        values (#{foodId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{protein,jdbcType=DOUBLE},
+                #{cho,jdbcType=DOUBLE}, #{heat,jdbcType=DOUBLE}, #{fat,jdbcType=DOUBLE}, #{imgName,jdbcType=VARCHAR}
+               )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="edu.jsut.nursing.model.Food">
+        update food
+        set name = #{name,jdbcType=VARCHAR},
+            protein = #{protein,jdbcType=DOUBLE},
+            cho = #{cho,jdbcType=DOUBLE},
+            heat = #{heat,jdbcType=DOUBLE},
+            fat = #{fat,jdbcType=DOUBLE},
+            img_name = #{imgName,jdbcType=VARCHAR}
+        where food_id = #{foodId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select food_id, name, protein, cho, heat, fat, img_name
+        from food
+        where food_id = #{foodId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select food_id, name, protein, cho, heat, fat, img_name
+        from food
+    </select>
+    <select id="query" resultMap="BaseResultMap">
+        select food_id, name, protein, cho, heat, fat, img_name
+        from food
+        <where>
+            <if test="name != null and name != ''">
+                and name like "%"#{name}"%"
+            </if>
+        </where>
+    </select>
+</mapper>

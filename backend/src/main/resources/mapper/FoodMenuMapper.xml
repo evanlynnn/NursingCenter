@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jsut.nursing.mapper.FoodMenuMapper">
+    <resultMap id="BaseResultMap" type="edu.jsut.nursing.model.FoodMenu">
+        <id column="menu_id" jdbcType="INTEGER" property="menuId"/>
+        <result column="week" jdbcType="INTEGER" property="week"/>
+        <result column="eating_time" jdbcType="VARCHAR" property="eatingTime"/>
+        <association property="user" javaType="edu.jsut.nursing.model.User">
+            <id column="user_id" property="userId"/>
+            <result column="user_id_card" jdbcType="VARCHAR" property="idCard"/>
+            <result column="user_name" jdbcType="VARCHAR" property="name"/>
+            <result column="user_age" jdbcType="INTEGER" property="age"/>
+            <result column="user_status" jdbcType="INTEGER" property="status"/>
+            <result column="user_sex" jdbcType="VARCHAR" property="sex"/>
+        </association>
+        <association property="food" javaType="edu.jsut.nursing.model.Food">
+            <id column="food_id" jdbcType="INTEGER" property="foodId" />
+            <result column="food_name" jdbcType="VARCHAR" property="name" />
+            <result column="food_protein" jdbcType="DOUBLE" property="protein" />
+            <result column="food_cho" jdbcType="DOUBLE" property="cho" />
+            <result column="food_heat" jdbcType="DOUBLE" property="heat" />
+            <result column="food_fat" jdbcType="DOUBLE" property="fat" />
+            <result column="food_img_name" jdbcType="VARCHAR" property="imgName" />
+        </association>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from food_menu
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="edu.jsut.nursing.model.FoodMenu">
+        insert into food_menu (menu_id, user_id, week,
+                               eating_time, food_id)
+        values (#{menuId,jdbcType=INTEGER}, #{user.userId,jdbcType=INTEGER}, #{week,jdbcType=INTEGER},
+                #{eatingTime,jdbcType=VARCHAR}, #{food.foodId,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="edu.jsut.nursing.model.FoodMenu">
+        update food_menu
+        set user_id = #{user.userId,jdbcType=INTEGER},
+            week    = #{week,jdbcType=INTEGER},
+            eating_time  = #{eatingTime,jdbcType=VARCHAR},
+            food_id = #{food.foodId,jdbcType=INTEGER}
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select M.menu_id, M.week, M.eating_time, M.user_id, M.food_id,
+               U.id_card as user_id_card, U.name as user_name, U.age as user_age, U.status as user_status, U.sex as user_sex,
+               F.name as food_name, F.protein as food_protein, F.cho as food_cho, F.heat as food_heat, F.fat as food_fat, F.img_name as food_img_name
+        from food_menu as M
+                 join food as F on M.food_id = F.food_id
+                 join user as U on M.user_id = U.user_id
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select M.menu_id, M.week, M.eating_time, M.user_id, M.food_id,
+               U.id_card as user_id_card, U.name as user_name, U.age as user_age, U.status as user_status, U.sex as user_sex,
+               F.name as food_name, F.protein as food_protein, F.cho as food_cho, F.heat as food_heat, F.fat as food_fat, F.img_name as food_img_name
+        from food_menu as M
+                 join food as F on M.food_id = F.food_id
+                 join user as U on M.user_id = U.user_id
+    </select>
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        select M.menu_id, M.week, M.eating_time, M.user_id, M.food_id,
+        U.id_card as user_id_card, U.name as user_name, U.age as user_age, U.status as user_status, U.sex as user_sex,
+        F.name as food_name, F.protein as food_protein, F.cho as food_cho, F.heat as food_heat, F.fat as food_fat, F.img_name as food_img_name
+        from food_menu as M
+        join food as F on M.food_id = F.food_id
+        join user as U on M.user_id = U.user_id
+        <where>
+            <if test="user.userId != null or user.userId != ''">
+                and M.user_id = #{user.userId}
+            </if>
+        </where>
+    </select>
+</mapper>
