@@ -24,7 +24,7 @@
 
 ### 初始化数据库
 
-创建名为nursing的数据库，并运行根目录下的nursing.sql
+创建名为nursing的数据库，并运行根目录下的`nursing.sql`
 
 ### 前端初始化运行
 
@@ -36,7 +36,7 @@ npm run serve
 
 ### 后端初始化
 
-后端为Maven项目，使用IDEA打开，并运行build project.
+后端为Maven项目，使用IDEA打开，并运行build project. 
 修改Spring配置文件`application.properties`中的`web.upload-path`属性，将其修改为本地的绝对路径。
 
 ## 项目结构
