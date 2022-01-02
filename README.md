@@ -37,6 +37,7 @@ npm run serve
 ### 后端初始化
 
 后端为Maven项目，使用IDEA打开，并运行build project.
+修改Spring配置文件`application.properties`中的`web.upload-path`属性，将其修改为本地的绝对路径。
 
 ## 项目结构
 
