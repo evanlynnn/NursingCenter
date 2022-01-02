@@ -61,7 +61,7 @@ export default {
           this.$router.push('/main/food')
           break;
         case '5-2':
-          this.$router.push('/main/customizeMenu')
+          this.$router.push('/main/foodMenu')
           break;
       }
     }

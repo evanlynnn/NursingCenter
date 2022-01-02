@@ -5,6 +5,9 @@ import Main from "@/components/main/Main";
 import FoodList from "../components/food/FoodList";
 import AddFood from "../components/food/AddFood";
 import EditFood from "../components/food/EditFood";
+import FoodMenuList from "../components/foodMenu/FoodMenuList";
+import AddFoodMenu from "../components/foodMenu/AddFoodMenu";
+import EditFoodMenu from "../components/foodMenu/EditFoodMenu";
 
 Vue.use(Router)
 
@@ -32,6 +35,18 @@ const router = new Router({
                     path: 'editFood/:id',
                     component: EditFood
                 },
+                {
+                    path: 'foodMenu',
+                    component: FoodMenuList
+                },
+                {
+                    path: 'addFoodMenu',
+                    component: AddFoodMenu
+                },
+                {
+                    path: 'editFoodMenu/:id',
+                    component: EditFoodMenu
+                }
             ]
         }
 

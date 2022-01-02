@@ -58,6 +58,7 @@
         from food_menu as M
                  join food as F on M.food_id = F.food_id
                  join user as U on M.user_id = U.user_id
+        order by M.user_id, M.week asc
     </select>
     <select id="selectByUserId" resultMap="BaseResultMap">
         select M.menu_id, M.week, M.eating_time, M.user_id, M.food_id,
