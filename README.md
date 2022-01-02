@@ -4,7 +4,7 @@
 
 本项目基于 Vue + SSM 框架开发，使用 Element UI 组件库。
 
-[林文威](https://github.com/evanlynnn) [李鹤](https://github.com/Lnino23) [王彬瞻]() [吴宗辉]()
+林文威 [evanlynn.wei@gmail.com](mailto:evanlynn.wei@gmail.com) 李鹤 [baigenino@163.com](mailto:baigenino@163.com) 王彬瞻 吴宗辉
 
 ## 项目预览
 
@@ -41,3 +41,20 @@ npm run serve
 ## 项目结构
 
 ## 项目分工
+
+林文威：
+- 用例设计
+- 页面布局设计
+- 膳食管理模块
+- 膳食日历组件
+
+李鹤：
+- 数据库设计
+- 登录模块
+- 客户管理模块
+
+王彬瞻：
+- 护理管理模块
+
+吴宗辉：
+- 床位管理模块
