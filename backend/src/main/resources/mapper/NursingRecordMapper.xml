@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jsut.nursing.mapper.NursingRecordMapper">
+    <resultMap id="BaseResultMap" type="edu.jsut.nursing.model.NursingRecord">
+        <id column="record_id" jdbcType="INTEGER" property="recordId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="nursing_id" jdbcType="INTEGER" property="nursingId" />
+        <result column="nursing_time" jdbcType="TIMESTAMP" property="nursingTime" />
+        <result column="nursing_content" jdbcType="VARCHAR" property="nursingContent" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from nursing_record
+        where record_id = #{recordId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="edu.jsut.nursing.model.NursingRecord">
+        insert into nursing_record (record_id, user_id, nursing_id,
+                                    nursing_time, nursing_content)
+        values (#{recordId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{nursingId,jdbcType=INTEGER},
+                #{nursingTime,jdbcType=TIMESTAMP}, #{nursingContent,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="edu.jsut.nursing.model.NursingRecord">
+        update nursing_record
+        set user_id = #{userId,jdbcType=INTEGER},
+            nursing_id = #{nursingId,jdbcType=INTEGER},
+            nursing_time = #{nursingTime,jdbcType=TIMESTAMP},
+            nursing_content = #{nursingContent,jdbcType=VARCHAR}
+        where record_id = #{recordId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select record_id, user_id, nursing_id, nursing_time, nursing_content
+        from nursing_record
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select record_id, user_id, nursing_id, nursing_time, nursing_content
+        from nursing_record
+    </select>
+</mapper>

@@ -13,6 +13,10 @@ import AddCustomer from "../components/customer/AddCustomer";
 import CheckIn from "../components/customer/CheckIn";
 import AddCheckIn from "../components/customer/AddCheckIn";
 import Retreat from "../components/customer/Retreat";
+import NursingConfig from "../components/nursing/NursingConfig";
+import CustomizeNursing from "../components/nursing/CustomizeNursing";
+import CustomizeNursingAdd from "../components/nursing/CustomizeNursingAdd";
+import CustomizeNursingEdit from "../components/nursing/CustomizeNursingEdit";
 
 Vue.use(Router)
 
@@ -72,6 +76,22 @@ const router = new Router({
                 {
                     path: 'retreat',
                     component: Retreat,
+                },
+                {
+                    path: 'nursing',
+                    component: NursingConfig
+                },
+                {
+                    path: 'customizeNursing',
+                    component: CustomizeNursing,
+                },
+                {
+                    path: 'customizeNursingAdd',
+                    component: CustomizeNursingAdd,
+                },
+                {
+                    path: 'customizeNursingEdit/:id',
+                    component: CustomizeNursingEdit,
                 },
             ]
         }

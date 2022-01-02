@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jsut.nursing.mapper.NursingMapper">
+    <resultMap id="BaseResultMap" type="edu.jsut.nursing.model.Nursing">
+        <id column="nursing_id" jdbcType="INTEGER" property="nursingId" />
+        <result column="nursing_name" jdbcType="VARCHAR" property="nursingName" />
+        <result column="service_price" jdbcType="INTEGER" property="servicePrice" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from nursing
+        where nursing_id = #{nursingId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="edu.jsut.nursing.model.Nursing">
+        insert into nursing (nursing_id, nursing_name, service_price,
+                             description)
+        values (#{nursingId,jdbcType=INTEGER}, #{nursingName,jdbcType=VARCHAR}, #{servicePrice,jdbcType=INTEGER},
+                #{description,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="edu.jsut.nursing.model.Nursing">
+        update nursing
+        set nursing_name = #{nursingName,jdbcType=VARCHAR},
+            service_price = #{servicePrice,jdbcType=INTEGER},
+            description = #{description,jdbcType=VARCHAR}
+        where nursing_id = #{nursingId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select nursing_id, nursing_name, service_price, description
+        from nursing
+        where nursing_id = #{nursingId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select nursing_id, nursing_name, service_price, description
+        from nursing
+    </select>
+</mapper>
