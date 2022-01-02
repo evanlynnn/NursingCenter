@@ -8,6 +8,11 @@ import EditFood from "../components/food/EditFood";
 import FoodMenuList from "../components/foodMenu/FoodMenuList";
 import AddFoodMenu from "../components/foodMenu/AddFoodMenu";
 import EditFoodMenu from "../components/foodMenu/EditFoodMenu";
+import CustomerList from "../components/customer/CustomerList";
+import AddCustomer from "../components/customer/AddCustomer";
+import CheckIn from "../components/customer/CheckIn";
+import AddCheckIn from "../components/customer/AddCheckIn";
+import Retreat from "../components/customer/Retreat";
 
 Vue.use(Router)
 
@@ -46,7 +51,28 @@ const router = new Router({
                 {
                     path: 'editFoodMenu/:id',
                     component: EditFoodMenu
-                }
+                },
+                {
+                    path: 'customer',
+                    component: CustomerList,
+                },
+                {
+                    path: 'customerAdd',
+                    component: AddCustomer
+                },
+
+                {
+                    path: 'checkin',
+                    component: CheckIn
+                },
+                {
+                    path: 'checkinAdd',
+                    component: AddCheckIn
+                },
+                {
+                    path: 'retreat',
+                    component: Retreat,
+                },
             ]
         }
 

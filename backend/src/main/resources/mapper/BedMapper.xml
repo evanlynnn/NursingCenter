@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jsut.nursing.mapper.BedMapper">
+    <resultMap id="BaseResultMap" type="edu.jsut.nursing.model.Bed">
+        <id column="bed_id" jdbcType="INTEGER" property="bedId" />
+        <result column="room_number" jdbcType="VARCHAR" property="roomNumber" />
+        <result column="bed_status" jdbcType="INTEGER" property="bedStatus" />
+        <result column="bed_number" jdbcType="INTEGER" property="bedNumber" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from bed
+        where bed_id = #{bedId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="edu.jsut.nursing.model.Bed">
+        insert into bed (bed_id, room_number, bed_status,
+                         bed_number)
+        values (#{bedId,jdbcType=INTEGER}, #{roomNumber,jdbcType=VARCHAR}, #{bedStatus,jdbcType=INTEGER},
+                #{bedNumber,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="edu.jsut.nursing.model.Bed">
+        update bed
+        set room_number = #{roomNumber,jdbcType=VARCHAR},
+            bed_status = #{bedStatus,jdbcType=INTEGER},
+            bed_number = #{bedNumber,jdbcType=INTEGER}
+        where bed_id = #{bedId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select bed_id, room_number, bed_status, bed_number
+        from bed
+        where bed_id = #{bedId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select bed_id, room_number, bed_status, bed_number
+        from bed
+    </select>
+</mapper>

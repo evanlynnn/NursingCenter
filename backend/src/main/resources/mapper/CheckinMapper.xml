@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jsut.nursing.mapper.CheckinMapper">
+    <resultMap id="BaseResultMap" type="edu.jsut.nursing.model.Checkin">
+        <id column="checkin_id" jdbcType="INTEGER" property="checkinId" />
+
+
+        <result column="contact_tel" jdbcType="VARCHAR" property="contactTel" />
+        <result column="checkin_date" jdbcType="TIMESTAMP" property="checkinDate" />
+        <!-- 连接-->
+        <association property="bed" javaType="edu.jsut.nursing.model.Bed" >
+            <id column="bed_id" jdbcType="INTEGER" property="bedId" />
+            <result column="room_number" jdbcType="VARCHAR" property="roomNumber" />
+            <result column="bed_status" jdbcType="INTEGER" property="bedStatus" />
+            <result column="bed_number" jdbcType="INTEGER" property="bedNumber" />
+        </association>
+        <association property="user" javaType="edu.jsut.nursing.model.User">
+            <id column="user_id" property="userId"/>
+            <result column="user_id_card" jdbcType="VARCHAR" property="idCard"/>
+            <result column="user_name" jdbcType="VARCHAR" property="name"/>
+            <result column="user_age" jdbcType="INTEGER" property="age"/>
+            <result column="user_status" jdbcType="INTEGER" property="status"/>
+            <result column="user_sex" jdbcType="VARCHAR" property="sex"/>
+        </association>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from checkin
+        where checkin_id = #{checkinId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="edu.jsut.nursing.model.Checkin">
+        insert into checkin (checkin_id, user_id, bed_id,
+                             contact_tel, checkin_date)
+        values (#{checkinId,jdbcType=INTEGER}, #{user.userId,jdbcType=INTEGER}, #{bed.bedId,jdbcType=INTEGER},
+                #{contactTel,jdbcType=VARCHAR}, #{checkinDate,jdbcType=TIMESTAMP})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="edu.jsut.nursing.model.Checkin">
+        update checkin
+        set user_id = #{userId,jdbcType=INTEGER},
+            bed_id = #{bedId,jdbcType=INTEGER},
+            contact_tel = #{contactTel,jdbcType=VARCHAR},
+            checkin_date = #{checkinDate,jdbcType=TIMESTAMP}
+        where checkin_id = #{checkinId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select checkin_id, user_id, bed_id, contact_tel, checkin_date
+        from checkin
+        where checkin_id = #{checkinId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select C.checkin_id, C.user_id, C.bed_id, C.contact_tel, C.checkin_date,
+               B.bed_id as bed_id,B.room_number as room_number ,B.bed_status as bed_status,B.bed_number as bed_number,
+               U.id_card as user_id_card, U.name as user_name, U.age as user_age, U.status as user_status, U.sex as user_sex
+        from checkin as C
+                 join bed as B on C.bed_id=B.bed_id
+                 join user as U on C.user_id = U.user_id
+    </select>
+    <select id="queryByDate" parameterType="edu.jsut.nursing.model.Checkin" resultMap="BaseResultMap">
+        select checkin_id, user_id, bed_id, contact_tel, checkin_date
+        from checkin
+        where checkin_date like CONCAT('%',#{checkinDate},'%')
+    </select>
+
+</mapper>

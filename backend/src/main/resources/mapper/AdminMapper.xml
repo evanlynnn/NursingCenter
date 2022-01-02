@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jsut.nursing.mapper.AdminMapper">
+    <resultMap id="BaseResultMap" type="edu.jsut.nursing.model.Admin">
+        <id column="admin_rname" jdbcType="VARCHAR" property="adminRname" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from admin
+        where admin_rname = #{adminRname,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="edu.jsut.nursing.model.Admin">
+        insert into admin (admin_rname, password)
+        values (#{adminRname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="edu.jsut.nursing.model.Admin">
+        update admin
+        set password = #{password,jdbcType=VARCHAR}
+        where admin_rname = #{adminRname,jdbcType=VARCHAR}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select admin_rname, password
+        from admin
+        where admin_rname = #{adminRname,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select admin_rname, password
+        from admin
+    </select>
+    <select id="query" parameterType="edu.jsut.nursing.model.Admin" resultMap="BaseResultMap">
+        select  admin_rname, password
+        from admin
+        where admin_rname = #{adminRname} and password=#{password}
+    </select>
+</mapper>
