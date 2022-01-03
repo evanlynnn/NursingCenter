@@ -4,7 +4,7 @@
 
 本项目基于 Vue + SSM 框架开发，使用 Element UI 组件库。
 
-林文威 [evanlynn.wei@gmail.com](mailto:evanlynn.wei@gmail.com) 李鹤 [baigenino@163.com](mailto:baigenino@163.com) 王彬瞻 吴宗辉
+林文威 [evanlynn.wei@gmail.com](mailto:evanlynn.wei@gmail.com) 李鹤 [baigenino@163.com](mailto:baigenino@163.com) 王彬瞻[EllonBzq0701@gmail.com](mailto:EllonBzq0701@gmail.com) 吴宗辉[764267468@qq.com](mailto:764267468@qq.com)
 
 ## 项目预览
 
